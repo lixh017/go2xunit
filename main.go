@@ -101,6 +101,20 @@ func main() {
 		xmlTemplate = lib.XMLMultiTemplate
 	}
 
+	type AllTestStruct struct {
+		NumAllFailed int
+		NumAllPassed int
+		NumSkipped int
+		AllLen int
+	}
+
+	allTests := new(AllTestStruct)
+	for index,_ := range suites {
+		allTests.NumAllFailed += suites[index].NumFailed()
+		allTests.NumAllPassed += suites[index].NumPassed()
+		allTests.NumSkipped += suites[index].NumSkipped()
+		allTests.AllLen += suites[index].Len()
+	}
 	lib.WriteXML(suites, output, xmlTemplate, testTime)
 	if args.fail && suites.HasFailures() {
 		os.Exit(1)

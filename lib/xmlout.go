@@ -25,8 +25,9 @@ const (
 
 	// XMLMultiTemplate is template when we have multiple suites
 	XMLMultiTemplate string = `
-<testsuites>` + XUnitTemplate + `</testsuites>
+<testsuites tests="{{.Len}}" failures="{{.NumFailed}}" skip="{{.NumSkipped}}" errors="0"  timestamp="{{.RunDate}} {{.RunTime}}" time="{{.Time}}" name="AllTests">` + XUnitTemplate + `</testsuites>
 `
+
 
 	// XUnitNetTemplate is XML template for xunit.net
 	// see https://xunit.codeplex.com/wikipage?title=XmlFormat
